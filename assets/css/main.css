@@ -859,7 +859,7 @@ section,
 .btn-get-started {
   color: var(--contrast-color);
   background: var(--accent-color);
-  font-family: var(--heading-font);
+  font-family: "Anek Latin";
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
