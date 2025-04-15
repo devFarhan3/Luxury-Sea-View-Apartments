@@ -531,8 +531,8 @@ h6 {
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
-  background: 
-color-mix(in srgb, var(--default-color), transparent 96%);
+  background:
+    color-mix(in srgb, var(--default-color), transparent 96%);
   font-size: 14px;
   padding-bottom: 50px;
   position: relative;
@@ -836,7 +836,7 @@ section,
   background: url(https://v.fastcdn.co/cdn-cgi/image/format=auto,fit=scale-down,sharpen=1/u/a43967b2/65438116-0-Desktop-Header---1.jpg) repeat 50% 50% / cover;
 }
 
-.hero h1 {
+.col-first h1 {
 
   font-family: begum;
   font-weight: 500;
@@ -846,7 +846,7 @@ section,
 
 }
 
-.hero p {
+.col-first p {
   color: var(--default-color);
   margin: 5px 0 30px 0;
   font-family: "Anek Latin";
@@ -1885,9 +1885,14 @@ section,
 }
 
 .contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email], 
-.contact .php-email-form textarea  , .contact .form-select   , .intl-tel-input input{
+.contact .php-email-form input[type=email],
+.contact .php-email-form textarea,
+.contact .form-select,
+.intl-tel-input input
+
+{
   font-size: 14px;
+  
   padding: 10px 15px;
   box-shadow: none;
   border-radius: 0;
@@ -1898,13 +1903,17 @@ section,
 
 .contact .php-email-form input[type=text]:focus,
 .contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus  , #contact .intl-tel-input input:focus{
+.contact .php-email-form textarea:focus,
+.contact .intl-tel-input input:focus,
+.form-select:focus,
+.form-control:focus {
   border-color: var(--accent-color);
+  color: var(--default-color);
 }
 
 .contact .php-email-form input[type=text]::placeholder,
 .contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder  {
+.contact .php-email-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
@@ -1918,10 +1927,15 @@ section,
   font-size: 1.2384rem;
   font-family: "Anek Latin";
   font-weight: 400;
+  border-radius: 50px;
   width: 100%;
 }
+
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  background-color: transparent;
+  color: var(--default-color);
+  border: 1px solid var(--default-color);
 }
 
 /*--------------------------------------------------------------
@@ -2807,7 +2821,8 @@ p {
 
 #values .section-title h3,
 #why_damac .section-title h3,
-#why_invest .section-title h3 , #contact .section-title h3 {
+#why_invest .section-title h3,
+.contact .section-title h3 {
   text-align: center;
   font-family: begum;
   font-weight: 400;
@@ -2898,13 +2913,13 @@ iframe {
   max-width: 250px;
 }
 
-#contact .section-title h3 {
+.contact .section-title h3 {
   text-align: start;
   max-width: 600px;
   margin-bottom: 20px;
 }
 
-.contact  {
+.contact {
   padding-top: 80px;
 }
 
@@ -2912,7 +2927,7 @@ iframe {
   width: 200px;
 }
 
-#contact .intl-tel-input input{
+.contact .intl-tel-input input {
   font-size: 14px;
   /* padding: 10px 5px; */
   box-shadow: none;
@@ -2933,14 +2948,174 @@ form .error {
   color: #ff0000;
 }
 
+.hero form {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+  border-radius: 16px;
+}
+
+/* whats app css */
+
+button.wh-ap-btn {
+  outline: none;
+  width: 60px;
+  height: 60px;
+  border: 0;
+  background-color: #2ecc71;
+  padding: 0;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  transition: opacity 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+button.wh-ap-btn::after {
+  content: "";
+  background-image: url("https://i.imgur.com/cAS6qqn.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 1;
+}
+
+button.wh-ap-btn:hover {
+  opacity: 1;
+  background-color: #20bf6b;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.wh-api {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.wh-fixed {
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+
+/* animacion pulse */
+
+.whatsapp-pulse {
+  width: 60px;
+  height: 60px;
+  right: 10px;
+  bottom: 50px;
+  background: #10b418;
+  position: fixed;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 99;
+  display: inline-block;
+  line-height: 65px;
+  /* top: 0%; */
+}
+
+
+
+.whatsapp-pulse:before {
+  position: absolute;
+  content: " ";
+  z-index: -1;
+  bottom: -15px;
+  right: -15px;
+  background-color: #10b418;
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  opacity: 0.6;
+  -webkit-animation: pulse 1s ease-out;
+  animation: pulse 1.8s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+  }
+
+  25% {
+    -webkit-transform: scale(0.3);
+    opacity: 1;
+  }
+
+  50% {
+    -webkit-transform: scale(0.6);
+    opacity: 0.6;
+  }
+
+  75% {
+    -webkit-transform: scale(0.9);
+    opacity: 0.3;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  25% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+
+  75% {
+    transform: scale(0.9);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/*--------------------------------------------------------------
 /* media farhan css */
 
 @media (max-width: 640px) {
 
-  #contact .section-title h3 {
+  .header .logo img {
+    max-height: 36px;
+    margin-right: 0;
+    margin-left: 30px;
+}
+
+  .hero form {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(50px);
+    border-radius: 16px;
+  }
+
+  .contact .section-title h3 {
     text-align: center;
 
   }
+
   .item-block.video {
     width: 100% !important;
     height: 225px;

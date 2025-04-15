@@ -133,7 +133,7 @@
 
       <div class="container">
         <div class="row gy-4">
-          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <div class="col-lg-6 order-1 order-lg-2 d-flex flex-column justify-content-center col-first">
             <h1 data-aos="fade-up">LUXURY HAS<br>
               A NEW HORIZON</h1>
             <p data-aos="fade-up" data-aos-delay="100">Sea view apartments in Dubai <br> starting from AED 2.1 million*
@@ -143,9 +143,74 @@
 
             </div>
           </div>
-          <!-- <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-            <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-          </div> -->
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+          
+            <div id="contact_1" class="contact pt-0">
+              <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="row gy-3 d-flex justify-content-center align-items-center">
+        
+                
+        
+                  <div class="col-lg-12 col-sm-12 col-12">
+                    <form method="post" class="php-email-form " data-aos="fade-up" data-aos-delay="200"
+                    name="google-sheet" id="lead_form">
+                      <div class="row gy-3">
+                        <div class="form_text text-center">
+                          <h4 class="text-white">
+                            DISCOVER YOUR NEXT ADDRESS
+                          </h4>
+                          <p class="mb-0 text-white"> <span class="text-danger">*</span> <i>All fields are compulsory</i></p>
+                        </div>
+        
+                        <div class="col-md-12">
+                          <select class="form-select" name="title" id="title" required="">
+                            <option selected>Title</option>
+                            <option value="Mr">Mr.</option>
+                            <option value="Mrs">Mrs.</option>
+                            <option value="Ms">Ms.</option>
+                          </select>
+                        </div>
+        
+                        <div class="col-md-6">
+                          <input type="text" name="first_Name" class="form-control" placeholder="First Name*" required="">
+                        </div>
+        
+                        <div class="col-md-6 ">
+                          <input type="text" class="form-control" name="last_name" placeholder="Last Name*" required="">
+                        </div>
+        
+                        <div class="col-md-6 ">
+                          <input type="email" class="form-control" name="email" placeholder="Email*" required="">
+                        </div>
+        
+                        <div class="col-md-6 ">
+                          <input type="tel" id="mobile_number" name="phone" placeholder="phone">
+                        </div>
+        
+        
+        
+                        <div class="col-12">
+                          <textarea class="form-control" name="comments" rows="4" placeholder="Comments" required=""></textarea>
+                        </div>
+        
+                        <div class="col-12 text-center">
+                          <!-- <div class="loading">Loading</div>
+                          <div class="error-message"></div>
+                          <div class="sent-message">Your message has been sent. Thank you!</div> -->
+        
+                          <button type="submit">Send Message</button>
+                        </div>
+        
+                      </div>
+                    </form>
+                  </div><!-- End Contact Form -->
+        
+                </div>
+        
+              </div>
+        
+            </div>
+          </div>
         </div>
       </div>
 
@@ -726,7 +791,7 @@
 
           <div class="col-lg-6 col-sm-12 col-12">
             <form method="post" class="php-email-form " data-aos="fade-up" data-aos-delay="200"
-            name="google-sheet" id="lead_form">
+            name="google-sheet" id="lead_form_2">
               <div class="row gy-3">
                 <div class="form_text text-center">
                   <h4>
@@ -786,9 +851,18 @@
 
   </main>
 
+
+
+    <!-- whatsapp code -->
+    <div class="wh-api">
+      <div class="wh-fixed whatsapp-pulse">
+        <a href="https://api.whatsapp.com/send?phone=971545301760" target="_blank">
+          <button class="wh-ap-btn"></button>
+        </a>
+      </div>
+    </div>
+
   <footer id="footer" class="footer">
-
-
 
     <div class="container footer-top">
       <div class="row gy-4">
@@ -877,6 +951,86 @@
     );
 
     $("#lead_form").validate({
+      rules: {
+        title: "required",
+        first_Name: "required",
+        last_name: "required",
+        email: "required",
+        phone: "required",
+        Comments: "required",
+        email: {
+          required: true,
+          email: true
+        },
+        // phone: {
+        //     required: true,
+        //     mobileValidation: $("#mobile_number").val(),
+        // }
+      },
+      messages: {
+        title: "Please Enter your Title",
+        first_Name: "Please Enter your First Name",
+        last_name: "Please enter your Last Name",
+        email: "Please enter a valid email address",
+        phone: "Please enter a valid Phone Number",
+        Comments: "Write your comments here",
+
+        // phone: {
+        //       required: "Please provide mobile number",
+        //   }
+      },
+
+      submitHandler: function (form) {
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby0oDBh_C6Kk8xYK0ldGWy-sg5NO6hQctKxkT0Gub6bsE5rJFbRaThRMGE36L16ZeV5/exec'
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(response =>
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Thanks,Our Sales Representative Will Contact You Shortly',
+              showConfirmButton: false,
+              timer: 2500
+            }).then(function () {
+              setTimeout(function () { location.reload(true); }, 1000);
+            })
+          )
+          .catch(error =>
+            // console.error('Error!', error.message)
+            Swal.fire({
+              icon: 'error',
+              title: 'Sorry! Try again',
+              text: 'Error : ' + error.message,
+              timer: 5000
+            }).then(function () {
+              setTimeout(function () { location.reload(true); }, 1000);
+            })
+          )
+      }
+    });
+
+
+  });
+
+
+</script>
+
+
+<!-- lead form 2 -->
+
+<script>
+  $(function () {
+    $('input[name="phone"]').intlTelInput(); 
+
+    $.validator.addMethod(
+        "mobileValidation",
+        function(value, element) {
+            return !/^\+?\d{12}$/.test(value) ? false : true;
+        },
+        "Invalid. Please provide valid number"
+    );
+
+    $("#lead_form_2").validate({
       rules: {
         title: "required",
         first_Name: "required",
