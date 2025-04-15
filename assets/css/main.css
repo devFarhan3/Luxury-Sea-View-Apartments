@@ -3099,6 +3099,11 @@ button.wh-ap-btn:hover {
 
 @media (max-width: 640px) {
 
+  .contact .php-email-form {
+    padding: 25px 10px;
+    height: 100%;
+}
+
   .header .logo img {
     max-height: 36px;
     margin-right: 0;
