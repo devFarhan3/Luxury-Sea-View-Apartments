@@ -3125,6 +3125,11 @@ button.wh-ap-btn:hover {
 /* media farhan css */
 
 @media (max-width: 640px) {
+  #why_damac p {
+    
+    white-space: nowrap;
+    margin-bottom: 0;
+}
 
   .contact .php-email-form {
     padding: 25px 10px;
@@ -3226,4 +3231,23 @@ button.wh-ap-btn:hover {
 
 
 
+}
+
+
+@media (max-width: 374px){
+  #header {
+    left: 15%;
+    top: 10px;
+}
+
+#hero .btn-get-started {
+  width: 75%;
+  margin: 0 auto;
+}
+
+#why_damac p {
+  
+  margin-bottom: 0;
+  white-space: nowrap;
+}
 }
