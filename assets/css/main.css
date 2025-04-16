@@ -2861,6 +2861,21 @@ p {
 }
 
 
+.grid_container_1 {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  /* Mobile first - 2 columns */
+  grid-template-columns: 1fr 1fr ;
+
+  /* Desktop - 4 columns with first column wider */
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 1fr 2fr;
+  }
+}
+
+
 
 #values .content,
 #why_damac .content {
@@ -3119,11 +3134,9 @@ button.wh-ap-btn:hover {
   .header .logo img {
     max-height: 36px;
     margin-right: 0;
-<<<<<<< HEAD
     margin-left: 0px;
-=======
     /* margin-left: 30px; */
->>>>>>> 676b034ecfdff486041c49da945e5738813fd592
+
 }
 
   .hero form {

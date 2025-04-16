@@ -342,8 +342,6 @@
             </div>
           </div>
 
-          
-       
           <div class="column">
             <div class="card">
               <img
@@ -382,7 +380,7 @@
 
         </div>
 
-        <div class="grid-container">
+        <div class="grid_container_1">
           <div class="column first-column">
 
             <div class="card">
@@ -427,7 +425,7 @@
               <div class="mt-3">
                 <div class="d-flex justify-content-center">
                   <div class="icons_sec">
-                    <img src="https://v.fastcdn.co/u/a43967b2/65383887-0-damac-bay-02-logo-en.svg" alt="">
+                    <img src="https://v.fastcdn.co/u/a43967b2/65137747-0-shoreline-by-damac-l.svg" alt="">
                   </div>
                   <!-- <div class="icons_sec">
                     <img src="https://v.fastcdn.co/u/a43967b2/65383887-0-damac-bay-02-logo-en.svg" alt="">
@@ -436,23 +434,7 @@
               </div>
             </div>
           </div>
-          <div class="column">
-            <div class="card">
-              <img
-                src="https://v.fastcdn.co/cdn-cgi/image/format=auto,fit=scale-down,sharpen=1,width=360/u/a43967b2/65399277-0-damac-bay-1-2.jpg"
-                class="img-fluid" alt="">
-              <div class="mt-3">
-                <div class="d-flex justify-content-around">
-                  <div class="icons_sec">
-                    <img src="https://v.fastcdn.co/u/a43967b2/65383887-0-damac-bay-02-logo-en.svg" alt="">
-                  </div>
-                  <div class="icons_sec">
-                    <img src="https://v.fastcdn.co/u/a43967b2/65383887-0-damac-bay-02-logo-en.svg" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
         </div>
 
         <div class="content">
@@ -1109,45 +1091,48 @@
 
 
 
-<!-- 
+
 <script>
+  
   $(document).ready(function() {
-  // Initialize the plugin
+  // Initialize your plugin
   var input = $("#lead_form_2");
-  var iti = window.intlTelInput(input[0], {
-    initialCountry: "auto", // Try to auto-detect
-    geoIpLookup: function(callback) {
-      // Use a free IP geolocation service
-      $.get("https://ipapi.co/json/", function() {}, "jsonp")
-        .done(function(data) {
-          var countryCode = (data && data.country) ? data.country : "us";
-          callback(countryCode);
-        })
-        .fail(function() {
-          callback("us"); // Fallback to US if detection fails
-        });
-    },
-    utilsScript: "path/to/utils.js" // Make sure to include utils.js
+  input.intlTelInput({
+    initialCountry: "auto", // Default country
+    separateDialCode: true,
+    autoPlaceholder: "polite",
+    preferredCountries: ["ae", "sa", "us", "uk"],
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/utils.js"
   });
 
-  // Alternative method if you want to skip the geoIpLookup
-  // and just set a default country based on browser language
-  function getDefaultCountry() {
+
+  // Method 2: Fallback to browser language detection
+  function fallbackCountryDetection() {
+    var countryCode = "auto"; // Default fallback (UAE in your case)
+    
     // Try to get from browser language
     var lang = navigator.language || navigator.userLanguage;
     if (lang) {
-      return lang.split('-')[1].toLowerCase();
+      var browserCountry = lang.split('-')[1];
+      if (browserCountry) {
+        // Check if this country exists in your plugin
+        var countryExists = intlTelInput.countries.some(function(country) {
+          return country.cca2 === browserCountry.toLowerCase();
+        });
+        if (countryExists) {
+          countryCode = browserCountry.toLowerCase();
+        }
+      }
     }
-    return "us"; // Fallback
+    
+    // Set the country flag
+    input.intlTelInput("selectCountry", countryCode);
   }
 
-  // Alternative initialization without IP lookup
-  // var iti = window.intlTelInput(input[0], {
-  //   initialCountry: getDefaultCountry(),
-  //   utilsScript: "path/to/utils.js"
-  // });
+  // Call the detection function after a short delay to ensure plugin is initialized
+  setTimeout(setDefaultCountry, 100);
 });
-</script> -->
+</script>
 
 </body>
 

@@ -1,7 +1,7 @@
 (function ($, window, document, undefined) {
     var pluginName = "intlTelInput",
         defaults = {
-            preferredCountries: ["ae"],
+            preferredCountries: ["auto"],
             // united states and united kingdom
             initialDialCode: true,
             americaMode: false,
