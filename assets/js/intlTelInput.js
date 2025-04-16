@@ -419,12 +419,7 @@
 
 // Namespaced to prevent clashes
 var intlTelInput = {
-    // Array of country objects for the flag dropdown.
-    // Each contains a name, country code (ISO 3166-1 alpha-2) and dial code.
-    // Originally from https://github.com/mledoze/countries
-    // then stripped down by copying the JSON into Chrome dev tools and manipulating it
-    // and then using JSON.stringify to print it out as a string again and copy it here.
-    // Also commented some countries which we dont yet have flags for.
+    
     countries: [
         {
             name: "Afghanistan",
