@@ -40,11 +40,34 @@
   <link type="text/css" rel="stylesheet" href="https://use.typekit.net/uaq4jig.css" />
   <!-- input tell css -->
   <link rel="stylesheet" href="assets/css/intlTelInput.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css"> -->
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/intlTelInput.min.js"></script>
 
   <!-- sweet alert js  -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <!-- ends -->
+
+  <script>
+    const phoneInputField = document.querySelector("#mobile_number");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      separateDialCode: true,
+      initialCountry: "auto", // Will attempt to determine the user's country
+      geoIpLookup: function (callback) {
+        fetch('https://ipapi.co/json/')
+          .then(response => response.json())
+          .then(data => {
+            callback(data.country_code);
+          })
+          .catch(() => {
+            callback("gb"); // Default to UK if geolocation fails
+          });
+          console.log(data)
+      },
+    });
+
+
+  </script>
 
 
 </head>
@@ -143,7 +166,7 @@
 
             </div>
           </div>
-          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+          <div class="col-lg-6 order-1 order-lg-2 hero-img d-none " data-aos="zoom-out">
 
             <div id="contact_1" class="contact pt-0">
               <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -151,7 +174,7 @@
 
 
 
-                  <div class="col-lg-12 col-sm-12 col-12 d-none">
+                  <div class="col-lg-12 col-sm-12 col-12 ">
                     <form method="post" class="php-email-form " data-aos="fade-up" data-aos-delay="200"
                       name="google-sheet" id="lead_form">
                       <div class="row gy-3">
@@ -931,9 +954,8 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/intlTelInput.min.js"
-    integrity="sha512-SlsU65KdLej2skQ24jI+POL40KCeJ7aR9dy6lhT6ZUggKQeoqq6Lj+7n6i8zqO2gcelYQBPgOdrtIwDXF6cLIw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script> -->
 
   <script src="assets/js/intlTelInput.js"></script>
 
@@ -941,82 +963,6 @@
      $('input[name="Mobile"]').intlTelInput(); 
   </script> -->
 
-  <script>
-    $(function () {
-      $('input[name="phone"]').intlTelInput();
-
-      $.validator.addMethod(
-        "mobileValidation",
-        function (value, element) {
-          return !/^\+?\d{12}$/.test(value) ? false : true;
-        },
-        "Invalid. Please provide valid number"
-      );
-
-      $("#lead_form").validate({
-        rules: {
-          title: "required",
-          first_Name: "required",
-          last_name: "required",
-          email: "required",
-          phone: "required",
-          Comments: "required",
-          email: {
-            required: true,
-            email: true
-          },
-          // phone: {
-          //     required: true,
-          //     mobileValidation: $("#mobile_number").val(),
-          // }
-        },
-        messages: {
-          title: "Please Enter your Title",
-          first_Name: "Please Enter your First Name",
-          last_name: "Please enter your Last Name",
-          email: "Please enter a valid email address",
-          phone: "Please enter a valid Phone Number",
-          Comments: "Write your comments here",
-
-          // phone: {
-          //       required: "Please provide mobile number",
-          //   }
-        },
-
-        submitHandler: function (form) {
-          const scriptURL = 'https://script.google.com/macros/s/AKfycby0oDBh_C6Kk8xYK0ldGWy-sg5NO6hQctKxkT0Gub6bsE5rJFbRaThRMGE36L16ZeV5/exec'
-
-          fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(response =>
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Thanks,Our Sales Representative Will Contact You Shortly',
-                showConfirmButton: false,
-                timer: 2500
-              }).then(function () {
-                setTimeout(function () { location.reload(true); }, 1000);
-              })
-            )
-            .catch(error =>
-              // console.error('Error!', error.message)
-              Swal.fire({
-                icon: 'error',
-                title: 'Sorry! Try again',
-                text: 'Error : ' + error.message,
-                timer: 5000
-              }).then(function () {
-                setTimeout(function () { location.reload(true); }, 1000);
-              })
-            )
-        }
-      });
-
-
-    });
-
-
-  </script>
 
 
   <!-- lead form 2 -->
@@ -1102,30 +1048,6 @@
 
 
 
-  <script>
-
-    $(document).ready(function () {
-      // Initialize your plugin
-      var input = $("#mobile_number");
-      input.intlTelInput({
-        initialCountry: "auto", // Default country
-
-
-        geoIpLookup: callback => {
-          fetch("https://ipapi.co/json")
-            .then(res => res.json())
-            .then(data => callback(data.country_code))
-            .catch(() => callback("us"));
-        },
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
-
-      });
-
-
-    });
-
-
-  </script>
 
 </body>
 
