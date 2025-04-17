@@ -8,6 +8,8 @@
             onlyCountries: [],
         };
 
+
+
     function Plugin(element, options) {
         this.element = element;
         this.options = $.extend({}, defaults, options);
